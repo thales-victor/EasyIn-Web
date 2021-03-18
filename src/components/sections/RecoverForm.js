@@ -1,11 +1,19 @@
 import React from 'react';
 import classNames from 'classnames';
-//import { SectionProps } from '../../utils/SectionProps';
-import { Form, Input } from '@rocketseat/unform';
-import { Register } from '../../services/api/login';
-import { useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { SectionProps } from '../../utils/SectionProps';
 import Button from '../elements/Button';
+import { RecoverPassword } from '../../services/api/login';
+import { Form, Input } from '@rocketseat/unform';
+import { useHistory } from 'react-router-dom';
+
+// const propTypes = {
+//   ...SectionProps.types
+// }
+
+// const defaultProps = {
+//   ...SectionProps.defaults
+// }
+
 
 const outerClasses = classNames(
   'hero section center-content',
@@ -22,20 +30,18 @@ const innerClasses = classNames(
   // bottomDivider && 'has-bottom-divider'
 );
 
-const LoginForm = () => {
-
+const RecoverForm = () => {
   const history = useHistory();
 
   async function HandleSubmit(data) {
-    var result = await Register(data.name, data.email, data.senha, data.confirmarSenha);
+    var result = await RecoverPassword(data.email);
     if (result) {
-      history.push("/login");
+      history.push("/home");
     }
   }
 
   return (
     <section
-      // {...props}
       className={outerClasses}
     >
       <div className="container-sm">
@@ -43,45 +49,34 @@ const LoginForm = () => {
           <div className="hero-content reveal-from-bottom" data-reveal-delay="200">
 
             <h1 className="mt-0 mb-16">
-              Cadastro
+              Recuperar senha
             </h1>
             <br></br>
             <br></br>
-            
+
             <Form onSubmit={HandleSubmit}>
 
-              
-              <Input name="name" type="text" placeholder="Nome" className="" />
-              <br></br>
-              <br></br>
-             
-              <Input name="email" type="email"  placeholder="E-mail" className="" />
+              <Input name="email" id="email" type="email" placeholder="Email de recuperação" className="" />
+            
 
-              <br></br>
-              <br></br>
-        
-              <Input name="senha" type="password" placeholder="Senha" className="" />
-              <br></br>
-              <br></br>
+              <div className="container-xs mt-32">
 
-     
-              <Input name="confirmarSenha" type="password" placeholder="Confirmar senha" className="" />
-
+              </div>
+            
 
               <div className="mt-32" >
                 <Button type="submit" tag="a" className="button button-primary button-wide-mobile">
-                  Cadastrar
+                  Recuperar
                 </Button>
-                {/* <Button tag="a" color="primary" wideMobile href="">
-                      Concluir cadastro
-                </Button> */}
               </div>
-
             </Form>
+
+
           </div>
         </div>
       </div>
     </section>
   );
 }
-export default LoginForm;
+
+export default RecoverForm;

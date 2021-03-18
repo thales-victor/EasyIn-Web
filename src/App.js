@@ -12,6 +12,7 @@ import Home from './views/Home';
 import Login from './views/Login';
 import Register from './views/Register';
 import Dashboard from './views/private/Dashboard';
+import Recover from './views/Recover'
 
 // Initialize Google Analytics
 ReactGA.initialize(process.env.REACT_APP_GA_CODE);
@@ -49,6 +50,7 @@ class App extends React.Component {
             <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
             <AppRoute exact path="/login" component={Login} layout={LayoutDefault} />
             <AppRoute exact path="/register" component={Register} layout={LayoutDefault} />
+            <AppRoute exact path="/recover" component={Recover} layout={LayoutDefault} />
             <AppRoute exact path="/home" component={Dashboard} />
           </Switch>
         )} />

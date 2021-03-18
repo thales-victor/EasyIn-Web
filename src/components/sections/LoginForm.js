@@ -51,41 +51,36 @@ const LoginForm = () => {
             <h1 className="mt-0 mb-16">
               Login
             </h1>
-
+            <br></br>
+            <br></br>
             <Form onSubmit={HandleSubmit}>
-              <div className="container-xs mt-32">
-                <p className="" >
-                  Email
-                </p>
-              </div>
-              <Input name="email" id="email" type="email" placeholder="E-mail" className="" />
 
+              <Input name="email" id="email" background-image="'./../../../assets/images/User.png" type="email" placeholder="Usuário" className="" />
+            
 
               <div className="container-xs mt-32">
-                <p className="">
-                  Senha
-                </p>
+
               </div>
               <Input name="senha" id="senha" type="password" placeholder="Senha" className="" />
 
               <div className="mt-32" >
-                <button type="submit" color="primary" wideMobile >
+                <Button type="submit" tag="a" className="button button-primary button-wide-mobile">
                   Login
-                </button>
+                </Button>
               </div>
             </Form>
 
-
+          <br></br>
             <div className="container-xs">
-              <p className="m-0 mb-32 mt-32" >
+              <a className="m-0 mb-32 mt-32" href="recover">
                 Esqueceu sua senha?
-              </p>
+              </a>
             </div>
 
             <div className="mt-32" >
               <Button tag="a" color="dark" wideMobile href="register">
                 Cadastrar
-                </Button>
+              </Button>
             </div>
 
           </div>

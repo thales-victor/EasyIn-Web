@@ -6,26 +6,27 @@
 	height: $button-form--height;
     text-decoration: none !important;
 	text-transform: $button--transform;
-	color: color(button-light);
-    background-color: color-bg(button-light);
+    
     border-width: $button-form--border-width;
 	border-style: $button-form--border-style;
-	border-color: color-border(button-light);
+	border-color: #3498db;
     border-radius: $button--radius;
     cursor: pointer;
     justify-content: center;
     text-align: center;
     letter-spacing: inherit;
     white-space: nowrap;
-	transition: background .15s ease;
+	transition: all 150ms ease-in-out;
+	color: #fff;
 
     &:active {
         outline: 0;
     }
 
 	&:hover {
-		background-color: color-bg(button-light-hover);
-		border-color: color-border(button-light-hover);
+		//background-color: color-bg(button-light-hover);
+		//border-color: color-border(button-light-hover);
+		box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
 	}
 
 	&.is-loading {
@@ -91,13 +92,14 @@
 }
 
 .button-primary {
-	color: color(button-primary);
-    background-color: color-bg(button-primary);
-	border-color: color-border(button-primary);
+	
+  	box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+	-webkit-transition: all 150ms ease-in-out;
+	transition: all 150ms ease-in-out;
 
     &:hover {
-        background-color: color-bg(button-primary-hover);
-		border-color: color-border(button-primary-hover);
+        box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+		
     }
 
 	&.is-loading {

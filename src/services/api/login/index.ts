@@ -27,7 +27,16 @@ export async function Register(name: string, email: string, password: string, co
     password: password,
     confirmPassword: confirmPassword
   };
-  console.log(params);
   let result: ApiResponse<DadosAutenticacao> = await post<any, DadosAutenticacao>("api/user", params);
+  return result.status === HttpStatus.OK;
+}
+
+export async function RecoverPassword(email: string): Promise<boolean> {
+  RemoveAuthentication();
+
+  var params = {
+    email: email
+  };
+  let result: ApiResponse<DadosAutenticacao> = await post<any, DadosAutenticacao>("api/user/ForgotPassword", params);
   return result.status === HttpStatus.OK;
 }
