@@ -49,10 +49,10 @@ class FeaturesTiles extends React.Component {
     );
 
     const sectionHeader = {
-      title: 'Como funciona',
-      paragraph: `Possibilitamos o login automático de sites e aplicativos sem a 
-      necessidade de digitar senhas no computador ou no seu smartphone, tornando rápido e 
-      seguro o processo de autenticação principalmente em equipamentos públicos.`
+      title: 'O que fazemos',
+      paragraph: `Possibilitamos o login automático em sites e aplicativos sem a 
+      necessidade de digitar senhas no computador ou em seu smartphone, tornando o processo de autenticação rápido e 
+      seguro, principalmente em equipamentos públicos.`
     };
 
     return (
