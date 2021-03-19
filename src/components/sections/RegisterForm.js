@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-//import { SectionProps } from '../../utils/SectionProps';
 import { Form, Input } from '@rocketseat/unform';
 import { Register } from '../../services/api/login';
 import { useHistory } from 'react-router-dom';
@@ -8,18 +7,11 @@ import PropTypes from 'prop-types';
 import Button from '../elements/Button';
 
 const outerClasses = classNames(
-  'hero section center-content',
-  // topOuterDivider && 'has-top-divider',
-  // bottomOuterDivider && 'has-bottom-divider',
-  // hasBgColor && 'has-bg-color',
-  // invertColor && 'invert-color',
-  // className
+  'hero section center-content'
 );
 
 const innerClasses = classNames(
-  'hero-inner section-inner',
-  // topDivider && 'has-top-divider',
-  // bottomDivider && 'has-bottom-divider'
+  'hero-inner section-inner'
 );
 
 const LoginForm = () => {
@@ -35,48 +27,32 @@ const LoginForm = () => {
 
   return (
     <section
-      // {...props}
       className={outerClasses}
     >
       <div className="container-sm">
         <div className={innerClasses}>
           <div className="hero-content reveal-from-bottom" data-reveal-delay="200">
-
             <h1 className="mt-0 mb-16">
               Cadastro
             </h1>
-            <br></br>
-            <br></br>
-            
+            <br />
+            <br />
             <Form onSubmit={HandleSubmit}>
-
-              
               <Input name="name" type="text" placeholder="Nome" className="" />
-              <br></br>
-              <br></br>
-             
-              <Input name="email" type="email"  placeholder="E-mail" className="" />
-
-              <br></br>
-              <br></br>
-        
+              <br />
+              <br />
+              <Input name="email" type="email" placeholder="E-mail" className="" />
+              <br />
+              <br />
               <Input name="senha" type="password" placeholder="Senha" className="" />
-              <br></br>
-              <br></br>
-
-     
+              <br />
+              <br />
               <Input name="confirmarSenha" type="password" placeholder="Confirmar senha" className="" />
-
-
-              <div className="mt-32" >
+              <div className="mt-32">
                 <Button type="submit" tag="a" className="button button-primary button-wide-mobile">
                   Cadastrar
                 </Button>
-                {/* <Button tag="a" color="primary" wideMobile href="">
-                      Concluir cadastro
-                </Button> */}
               </div>
-
             </Form>
           </div>
         </div>

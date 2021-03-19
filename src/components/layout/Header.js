@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import Logo from './partials/Logo';
+import Button from '../elements/Button';
 
 const propTypes = {
   active: PropTypes.bool,
@@ -121,7 +122,9 @@ class Header extends React.Component {
                         navPosition && `header-nav-${navPosition}`
                       )}>
                       <li>
-                        <Link to="#0" onClick={this.closeMenu}>Como funciona</Link>
+                        <Button tag="a" className="button-sm" wideMobile href="register">
+                          Cadastrar
+                        </Button>
                       </li>
                     </ul>
                     {!hideSignin &&

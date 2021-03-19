@@ -1,33 +1,16 @@
 import React from 'react';
 import classNames from 'classnames';
-import { SectionProps } from '../../utils/SectionProps';
 import Button from '../elements/Button';
 import { Login } from '../../services/api/login';
 import { Form, Input } from '@rocketseat/unform';
 import { useHistory } from 'react-router-dom';
 
-// const propTypes = {
-//   ...SectionProps.types
-// }
-
-// const defaultProps = {
-//   ...SectionProps.defaults
-// }
-
-
 const outerClasses = classNames(
-  'hero section center-content',
-  // topOuterDivider && 'has-top-divider',
-  // bottomOuterDivider && 'has-bottom-divider',
-  // hasBgColor && 'has-bg-color',
-  // invertColor && 'invert-color',
-  // className
+  'hero section center-content'
 );
 
 const innerClasses = classNames(
-  'hero-inner section-inner',
-  // topDivider && 'has-top-divider',
-  // bottomDivider && 'has-bottom-divider'
+  'hero-inner section-inner'
 );
 
 const LoginForm = () => {
@@ -47,42 +30,33 @@ const LoginForm = () => {
       <div className="container-sm">
         <div className={innerClasses}>
           <div className="hero-content reveal-from-bottom" data-reveal-delay="200">
-
             <h1 className="mt-0 mb-16">
               Login
             </h1>
-            <br></br>
-            <br></br>
+            <br />
+            <br />
             <Form onSubmit={HandleSubmit}>
-
               <Input name="email" id="email" background-image="'./../../../assets/images/User.png" type="email" placeholder="Usuário" className="" />
-            
-
               <div className="container-xs mt-32">
-
               </div>
               <Input name="senha" id="senha" type="password" placeholder="Senha" className="" />
-
               <div className="mt-32" >
-                <Button type="submit" tag="a" className="button button-primary button-wide-mobile">
+                <Button type="submit" className="button button-primary button-wide-mobile">
                   Login
                 </Button>
               </div>
             </Form>
-
-          <br></br>
+            <br />
             <div className="container-xs">
               <a className="m-0 mb-32 mt-32" href="recover">
                 Esqueceu sua senha?
               </a>
             </div>
-
             <div className="mt-32" >
               <Button tag="a" color="dark" wideMobile href="register">
                 Cadastrar
               </Button>
             </div>
-
           </div>
         </div>
       </div>
