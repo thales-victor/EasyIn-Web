@@ -6,12 +6,17 @@ import ReactGA from 'react-ga';
 
 // Layouts
 import LayoutDefault from './layouts/LayoutDefault';
+import PrivateLayout from './layouts/PrivateLayout';
 
 // Views 
 import Home from './views/Home';
 import Login from './views/Login';
 import Register from './views/Register';
-import Dashboard from './views/private/Dashboard';
+import DashboardPage from './views/private/dashboard';
+import CredentialsPage from './views/private/credentials';
+import HelpPage from './views/private/help';
+import HistoryPage from './views/private/history';
+import ProfilePage from './views/private/profile';
 
 // Initialize Google Analytics
 ReactGA.initialize(process.env.REACT_APP_GA_CODE);
@@ -27,13 +32,13 @@ class App extends React.Component {
     const page = this.props.location.pathname;
     document.body.classList.add('is-loaded')
     this.refs.scrollReveal.init();
-    trackPage(page); 
+    trackPage(page);
   }
 
   // Route change
   componentDidUpdate(prevProps) {
     const currentPage = prevProps.location.pathname + prevProps.location.search;
-    const nextPage = this.props.location.pathname + this.props.location.search;    
+    const nextPage = this.props.location.pathname + this.props.location.search;
     if (currentPage !== nextPage) {
       this.refs.scrollReveal.init();
       trackPage(nextPage);
@@ -49,7 +54,11 @@ class App extends React.Component {
             <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
             <AppRoute exact path="/login" component={Login} layout={LayoutDefault} />
             <AppRoute exact path="/register" component={Register} layout={LayoutDefault} />
-            <AppRoute exact path="/home" component={Dashboard} />
+            <AppRoute exact path="/home" component={DashboardPage} layout={PrivateLayout} />
+            <AppRoute exact path="/credentials" component={CredentialsPage} layout={PrivateLayout} />
+            <AppRoute exact path="/help" component={HelpPage} layout={PrivateLayout} />
+            <AppRoute exact path="/history" component={HistoryPage} layout={PrivateLayout} />
+            <AppRoute exact path="/profile" component={ProfilePage} layout={PrivateLayout} />
           </Switch>
         )} />
     );

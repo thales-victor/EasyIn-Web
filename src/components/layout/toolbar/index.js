@@ -5,11 +5,7 @@ import './styles.scss';
 function Toolbar() {
   return (
     <header className="toolbar">
-      <div>MENU</div>
-      <div>LOGO</div> 
-      <nav>
-         ...
-      </nav>
+      <div><a href="home">LOGO</a></div> 
    </header>
   );
 }

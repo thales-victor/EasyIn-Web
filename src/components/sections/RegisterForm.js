@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import { SectionProps } from '../../utils/SectionProps';
 import { Form, Input } from '@rocketseat/unform';
 
 import { Register } from '../../services/api/login';

@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { SectionProps } from '../../utils/SectionProps';
 import Button from '../elements/Button';
 import { Login } from '../../services/api/login';
 import { Form, Input } from '@rocketseat/unform';
@@ -30,16 +29,38 @@ const innerClasses = classNames(
   // bottomDivider && 'has-bottom-divider'
 );
 
+const loginStage = [
+  {id: 0, value: ""},
+  {id: 1, value: "."},
+  {id: 2, value: ". ."},
+  {id: 3, value: ". . ."},
+]
+
 const LoginForm = () => {
+  const [loading, setLoading] = useState(loginStage[0]);
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
+  useEffect(() => {
+    if (isLoading){
+      setTimeout(() => {
+        let index = (loading.id + 1) % 4;
+        setLoading(loginStage[index]);
+      }, 250);
+    } else if (loading.id !== 0){
+      setLoading(loginStage[0]);
+    }
+  }, [loading, isLoading])
+
   async function HandleSubmit(data) {
+    setIsLoading(true);
     var result = await Login(data.email, data.senha);
+    setIsLoading(false);
     if (result) {
       history.push("/home");
     }
   }
-
+  
   return (
     <section
       className={outerClasses}
@@ -69,8 +90,10 @@ const LoginForm = () => {
               <Input name="senha" id="senha" type="password" placeholder="Senha" className="" />
 
               <div className="mt-32" >
-                <button type="submit" color="primary" wideMobile >
-                  Login
+                <button type="submit" color="primary" wideMobile disabled={isLoading} >
+                  {
+                    'Login ' + loading.value
+                  }
                 </button>
               </div>
             </Form>

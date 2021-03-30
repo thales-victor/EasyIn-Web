@@ -1,0 +1,41 @@
+.MenuButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 200px;
+  height: 200px;
+
+  background-color: #ECEDED;
+  border-radius: 25px;
+  margin-bottom: 10px;
+  cursor: pointer;
+
+  @media screen and (max-width: 900px) {
+    width: 25vh;
+    height: 25vh;
+  }
+
+  .link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-weight: 600;
+    font-size: 2vw;
+    color: #000;
+
+    @media screen and (max-width: 900px) {
+      font-size: 4vw;
+    }
+
+    @media screen and (max-width: 600px) {
+      font-size: 6vw;
+    }
+  }
+}
+
+.margin {
+  margin-right: 10px;
+}
