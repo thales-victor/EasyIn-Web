@@ -63,7 +63,7 @@ const LoginForm = () => {
               </div>
               <Input name="senha" id="senha" type="password" placeholder="Senha" className="" />
               <div className="mt-32" >
-                <Button type="submit" className="button button-primary button-wide-mobile" disabled={isLoading}>
+                <Button type="submit" className="button button-primary button-wide-mobile" style={{width: 160}} disabled={isLoading}>
                   {
                     'Login ' + loading.value
                   }

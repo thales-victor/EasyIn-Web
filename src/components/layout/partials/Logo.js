@@ -2,11 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import Image from '../../elements/Image';
+import LogoImage from './../../../assets/images/Logo_ativo.png';
 
-const Logo = ({
-  className,
-  ...props
-}) => {
+const Logo = ({className, width, height,...props}) => {
+
 
   const classes = classNames(
     'brand',
@@ -21,10 +20,10 @@ const Logo = ({
       <h1 className="m-0">
         <Link to="/">
           <Image
-            src={require('./../../../assets/images/Logo_ativo.png')}
+            src={LogoImage}
             alt="Open"
-            width={105}
-            height={53} />
+            width={width || 105}
+            height={height || 53} />
         </Link>
       </h1>
     </div>
