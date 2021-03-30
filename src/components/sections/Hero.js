@@ -1,8 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
-import ButtonGroup from '../elements/ButtonGroup';
-import Button from '../elements/Button';
 
 const propTypes = {
   ...SectionProps.types
@@ -70,38 +68,9 @@ class HeroFull extends React.Component {
                   Senhas fortes, armazenadas com segurança e autenticações automatizadas
                 </p>
                 <div className="reveal-from-bottom" data-reveal-delay="600">
-                  <ButtonGroup>
-                    <Button tag="a" color="primary" wideMobile href="register">
-                      Cadastrar
-                    </Button>       
-                    <Button tag="a" color="dark" wideMobile href="https://github.com/cruip/open-react-template/">
-                      Saiba mais
-                    </Button>         
-                  </ButtonGroup>
                 </div>
               </div>
             </div>
-            {/* <div className="hero-figure reveal-from-bottom illustration-element-01" data-reveal-value="20px" data-reveal-delay="800">
-              <a
-                data-video="https://player.vimeo.com/video/174002812"
-                href="#0"
-                aria-controls="video-modal"
-                onClick={this.openModal}
-              >
-                <Image
-                  className="has-shadow"
-                  src={require('./../../assets/images/video-placeholder.jpg')}
-                  alt="Hero"
-                  width={896}
-                  height={504} />
-              </a>
-            </div>
-            <Modal
-              id="video-modal"
-              show={this.state.videoModalActive}
-              handleClose={this.closeModal}
-              video="https://player.vimeo.com/video/174002812"
-              videoTag="iframe" />             */}
           </div>
         </div>
       </section>

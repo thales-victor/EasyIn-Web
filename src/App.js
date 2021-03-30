@@ -17,6 +17,7 @@ import CredentialsPage from './views/private/credentials';
 import HelpPage from './views/private/help';
 import HistoryPage from './views/private/history';
 import ProfilePage from './views/private/profile';
+import Recover from './views/Recover'
 
 // Initialize Google Analytics
 ReactGA.initialize(process.env.REACT_APP_GA_CODE);
@@ -55,6 +56,7 @@ class App extends React.Component {
             <AppRoute exact path="/login" component={Login} layout={LayoutDefault} />
             <AppRoute exact path="/register" component={Register} layout={LayoutDefault} />
             <AppRoute exact path="/home" component={DashboardPage} layout={PrivateLayout} />
+            <AppRoute exact path="/recover" component={Recover} layout={LayoutDefault} />
             <AppRoute exact path="/credentials" component={CredentialsPage} layout={PrivateLayout} />
             <AppRoute exact path="/help" component={HelpPage} layout={PrivateLayout} />
             <AppRoute exact path="/history" component={HistoryPage} layout={PrivateLayout} />

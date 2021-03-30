@@ -1,15 +1,14 @@
 import React from 'react';
 // import sections
-import LoginForm from '../components/sections/LoginForm';
+import RecoverForm from '../components/sections/RecoverForm';
 
-class Login extends React.Component {
+class Recover extends React.Component {
 
   state = {
     videoModalActive: false
   }
   openModal = (e) => {
     e.preventDefault();
-    
     this.setState({ videoModalActive: true });
   }
 
@@ -21,9 +20,9 @@ class Login extends React.Component {
   render() {
 
     return (
-      <LoginForm className="illustration-section-01" />
+      <RecoverForm className="illustration-section-01" />
     );
   }
 }
 
-export default Login;
+export default Recover;
