@@ -29,3 +29,13 @@ export async function Register(name, email, password, confirmPassword) {
   let result = await post("api/user", params);
   return result.status === HttpStatus.OK;
 }
+
+export async function RecoverPassword(email) {
+  RemoveAuthentication();
+
+  var params = {
+    email: email
+  };
+  let result = await post("api/user/ForgotPassword", params);
+  return result.status === HttpStatus.OK;
+}
