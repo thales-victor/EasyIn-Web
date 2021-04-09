@@ -2,14 +2,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  box-shadow: 0 4px 8px 0 #3498db;
   width: 200px;
   height: 200px;
-
-  background-color: #ECEDED;
+  color: white;
+  background-color: #151719;
   border-radius: 25px;
   margin-bottom: 10px;
   cursor: pointer;
+  margin: 5PX;
+
+
 
   @media screen and (max-width: 900px) {
     width: 25vh;
@@ -24,7 +27,7 @@
     height: 100%;
     font-weight: 600;
     font-size: 2vw;
-    color: #000;
+    color: #ffffff;
 
     @media screen and (max-width: 900px) {
       font-size: 4vw;
@@ -35,7 +38,13 @@
     }
   }
 }
-
+.MenuButtonContainer:hover {
+  box-shadow: 0 8px 16px 0  rgba(255, 255, 255, 0.2);
+}
 .margin {
   margin-right: 10px;
+}
+
+Image{
+  display: inline-block;
 }

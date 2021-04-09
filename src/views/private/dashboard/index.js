@@ -1,19 +1,55 @@
 import React from 'react';
 import MenuButton from '../../../components/menuButton';
-
+import fotoSenha from '../../../assets/images/Senha.png';
+import fotoPerfil from '../../../assets/images/Perfil.png';
+import fotoHistorico from '../../../assets/images/Historico.png';
+import fotoAjuda from '../../../assets/images/Ajuda.png';
 import './styles.scss';
+import Image from '../../../components/elements/Image';
 
-function DashboardPage() {
+const DashboardPage = ({className, width, height,...props}) => {
   return (
     <>
       <div className="dashboardContainer">
+
         <div className="group">
-          <MenuButton name="Senhas" href="credentials" margin />
-          <MenuButton name="Perfil" href="profile"/>
+      <a href="credentials" className="MenuButtonContainer">
+        <Image
+            src={fotoSenha}
+            alt="Open"
+            width={width || 50}
+            height={height || 50}
+           />
+        </a>
+        
+         
+        <a href="Profile" className="MenuButtonContainer">
+        <Image
+            src={fotoPerfil}
+            alt="Open"
+            width={width || 50}
+            height={height || 50}
+           />
+        </a>
+         
         </div>
         <div className="group">
-          <MenuButton name="Histórico" href="history" margin/>
-          <MenuButton name="Ajuda" href="help"/>
+        <a href="History" className="MenuButtonContainer">
+        <Image
+            src={fotoHistorico}
+            alt="Open"
+            width={width || 50}
+            height={height || 50}
+           />
+        </a>
+        <a href="Help" className="MenuButtonContainer">
+        <Image
+            src={fotoAjuda}
+            alt="Open"
+            width={width || 50}
+            height={height || 50}
+           />
+        </a>
         </div>
       </div>
     </>
