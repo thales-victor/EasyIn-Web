@@ -4,6 +4,7 @@ import Button from '../elements/Button';
 import { Login } from '../../services/api/login';
 import { Form, Input } from '@rocketseat/unform';
 import { useHistory } from 'react-router-dom';
+import { GetAuthentication } from '../../services/localStorage/LocalStorageService';
 
 const outerClasses = classNames(
   'hero section center-content'
@@ -24,6 +25,13 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(loginStage[0]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+
+  useEffect(() => {
+    const token = GetAuthentication();
+    if (token) {
+      history.push("/home");
+    }
+  }, [])
 
   useEffect(() => {
     if (isLoading) {
@@ -63,7 +71,7 @@ const LoginForm = () => {
               </div>
               <Input name="senha" id="senha" type="password" placeholder="Senha" className="" />
               <div className="mt-32" >
-                <Button type="submit" className="button button-primary button-wide-mobile" style={{width: 160}} disabled={isLoading}>
+                <Button type="submit" className="button button-primary button-wide-mobile" style={{ width: 160 }} disabled={isLoading}>
                   {
                     'Login ' + loading.value
                   }
