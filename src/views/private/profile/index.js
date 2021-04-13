@@ -74,7 +74,7 @@ function ProfilePage() {
               <br />
               {
                 !isChangingPassword ? (
-                  <Button tag="a" color="dark" className="botao" onClick={handleClickChangePassword}>
+                  <Button tag="a" color="dark" onClick={handleClickChangePassword}>
                     Alterar senha
                   </Button>
                 ) : (
