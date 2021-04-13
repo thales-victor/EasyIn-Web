@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import Image from '../../elements/Image';
 import LogoImage from './../../../assets/images/Logo_ativo.png';
 
-const Logo = ({className, width, height,...props}) => {
+const Logo = ({className, width, height, link,...props}) => {
 
+  const linkTo = link || "/";
 
   const classes = classNames(
     'brand',
@@ -18,7 +19,7 @@ const Logo = ({className, width, height,...props}) => {
       className={classes}
     >
       <h1 className="m-0">
-        <Link to="/">
+        <Link to={linkTo}>
           <Image
             src={LogoImage}
             alt="Open"
