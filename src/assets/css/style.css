@@ -22,10 +22,10 @@ display: block;
 .profileCard{
 box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2);
   max-width: 300px;
-  width: 150px;
-  height: 150px;
+  width: 135px;
+  height: 135px;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 40px;
   margin-right: auto;
   margin-left: 10%;
   border-radius: 50%;
@@ -39,13 +39,18 @@ box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2);
 .titulo{
     margin-top: 40px;
     margin-right: 70%;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 15px;
 }
 .card {
     margin-top: 150px;
+    margin-bottom: 100px;
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 #3498db;
     transition: 0.3s;
-    height: 550px;
+    padding-bottom: 25px;
     width: 70%;
     margin-left: 15%;
     text-align: right;

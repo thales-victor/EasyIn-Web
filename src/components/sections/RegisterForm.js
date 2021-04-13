@@ -49,7 +49,7 @@ const LoginForm = () => {
               <br />
               <Input name="confirmarSenha" type="password" placeholder="Confirmar senha" className="" />
               <div className="mt-32">
-                <Button type="submit" tag="a" className="button button-primary button-wide-mobile">
+                <Button type="submit" className="button button-primary button-wide-mobile">
                   Cadastrar
                 </Button>
               </div>
