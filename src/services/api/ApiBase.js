@@ -2,6 +2,9 @@ import React from "react";
 import axios from "axios";
 import { GetAuthentication, RemoveAuthentication } from "../localStorage/LocalStorageService";
 import { useHistory } from "react-router-dom";
+import { HttpStatus } from "../HttpStatus";
+import CreateNotification from "../../utils/CreateNotification";
+import NotificationType from "../../enums/NotificationType";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:5000/",
@@ -51,6 +54,7 @@ const requestHandler = (request) => {
     }
   }
   request.headers["Content-Type"] = "application/json";
+  request.headers["Access-Control-Allow-Origin"] = "*";
   return request;
 };
 
