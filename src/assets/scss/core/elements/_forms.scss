@@ -41,6 +41,7 @@ fieldset {
 
 	&[disabled] {
 		cursor: not-allowed;
+		color: color(button-dark);
 		background-color: color-bg(input-disabled);
 		border-color: color-border(input-disabled);
 	}

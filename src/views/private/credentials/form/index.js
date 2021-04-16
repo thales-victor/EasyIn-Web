@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { Form, Input } from '@rocketseat/unform';
 import Button from '../../../../components/elements/Button';
 import Select from '../../../../components/elements/Select';
-import { GetCredentialById } from '../../../../services/api/credential';
+import { CreateCredential, DeleteCredentialById, GetCredentialById, UpdateCredential } from '../../../../services/api/credential';
 import { GetAllPlatforms } from '../../../../services/api/platform';
 import { ChangeInputType, SetInputValueByName } from '../../../../utils/SetInputValue';
 
 // import { Container } from './styles';
 
 function CredentialsFormPage() {
+  const history = useHistory();
   const { id } = useParams();
 
   const [isNew, setIsNew] = useState(true);
@@ -23,17 +24,21 @@ function CredentialsFormPage() {
   }, [])
 
   async function getCredential() {
-    if (id === 0) {
+    if (id == 0) {
       return;
     }
     setIsNew(false);
 
     const result = await GetCredentialById(id);
     if (result) {
-      setPlatformId(result.platform.id);
-      SetInputValueByName('username', result.username);
-      SetInputValueByName('password', result.password);
+      setInputValues(result);
     }
+  }
+
+  function setInputValues(data){
+    setPlatformId(data.platform.id);
+    SetInputValueByName('username', data.username);
+    SetInputValueByName('password', data.password);
   }
 
   async function getPlatforms() {
@@ -45,13 +50,44 @@ function CredentialsFormPage() {
     }
   }
 
-  function handleSubmit() {
-    alert('salvou');
+  function handleSubmit(data) {
+    if (isNew) {
+      create(data);
+    } else {
+      update(data);
+    }
+  }
+
+  async function create(data) {
+    const result = await CreateCredential(platformId, data.username, data.password, data.confirmPassword);
+    if (result) {
+      history.push('/credentials/' + result.id);
+    }
+  }
+
+  async function update(data) {
+    const result = await UpdateCredential(id, data.username, data.password);
+    if (result){
+      setInputValues(result);
+    }
   }
 
   function handleClickShowPassword() {
     ChangeInputType('password', showPassword ? 'text' : 'password');
+    ChangeInputType('confirmPassword', showPassword ? 'text' : 'password');
     setShowPassword(!showPassword);
+  }
+
+  async function handleClickDelete() {
+    const result = await DeleteCredentialById(id);
+    if (result) {
+      history.push('/credentials');
+    }
+  }
+
+  function handleChangePlatform (event) {
+    console.log(event.target.value);
+    setPlatformId(event.target.value)
   }
 
   return (
@@ -62,30 +98,48 @@ function CredentialsFormPage() {
         <div className="form">
           <div>
             <Form onSubmit={handleSubmit}>
-              <Select name="platform">
+              <Select name="platform" value={platformId} onChange={handleChangePlatform} disabled={!isNew}>
                 {
                   platforms.map((platform) => {
-                    return <option key={platform.id} selected={platformId == platform.id}>{platform.name}</option>
+                    return <option key={platform.id} value={platform.id}>{platform.name}</option>
                   })
                 }
               </Select>
               <br />
               <br />
-              <Input name="username" type="text" placeholder="Usuário ou email" />
+              <Input name="username" type="text" placeholder="Usuário ou email" autoComplete="email" />
               <br />
               <br />
-              <Input name="password" type="password" placeholder="Senha" />
+              <Input name="password" type="password" placeholder="Senha" autoComplete="new-password" />
               <br />
               <br />
-
+              {
+                isNew && (
+                  <>
+                    <Input name="confirmPassword" type="password" placeholder="Confirmar senha" />
+                    <br />
+                    <br />
+                  </>
+                )
+              }
+              {
               <Button type="button" onClick={handleClickShowPassword}>
-                Mostrar senha
+                {showPassword ? 'Mostrar' : 'Esconder'} senha
               </Button>
+
+              }
               <div className="mt-32">
-                <Button tag="a" color="dark" className="botao" wideMobile href="/credentials">
+                {
+                  !isNew && (
+                    <Button type="button" className="botao secondary" onClick={handleClickDelete}>
+                      Excluir
+                    </Button>
+                  )
+                }
+                <Button tag="a" color="dark" className="botao" href="/credentials">
                   Voltar
                 </Button>
-                <Button type="submit" className="button button-primary button-wide-mobile">
+                <Button type="submit" className="button button-primary">
                   Salvar
                 </Button>
               </div>

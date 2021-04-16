@@ -17,7 +17,7 @@ export async function GetCredentialById(id) {
 
 export async function CreateCredential(platformId, username, password, confirmPassword) {
   var params = {
-    platformId: platformId,
+    platformId: parseInt(platformId),
     username: username,
     password: password,
     confirmPassword: confirmPassword
@@ -29,12 +29,11 @@ export async function CreateCredential(platformId, username, password, confirmPa
     return result.data;
 }
 
-export async function UpdateCredential(id, username, password, confirmPassword) {
+export async function UpdateCredential(id, username, password) {
   var params = {
-    id: id,
+    id: parseInt(id),
     username: username,
-    password: password,
-    confirmPassword: confirmPassword
+    password: password
   }
 
   let result = await put(baseUrl, params);

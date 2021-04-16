@@ -9,6 +9,7 @@ import "../../../assets/css/style.css"
 import fotoAcesso from '../../../assets/images/Acesso.png';
 import MenuButton from '../../../components/menuButton';
 import Image from '../../../components/elements/Image';
+import { BiEdit, BiPlusCircle } from "react-icons/bi";
 
 const outerClasses = classNames(
   'hero section center-content'
@@ -36,15 +37,13 @@ function CredentialsPage() {
     }
   }
 
-  function setInputValues(data) {
-    SetInputValueByName('name', data.username);
-  }
-
   return (
     <section className={outerClasses}>
       <div className="card" >
         <h2 className="titulo">Senhas</h2>
-
+        <a className="link" href={'/credentials/0'} style={{ position: 'absolute', top: '175px', right: '320px' }}>
+          <BiPlusCircle size={40} />
+        </a>
 
         <div className="content">
           <table className="table">
@@ -73,7 +72,8 @@ function CredentialsPage() {
 
                       <th>
                         <a className="link" href={'/credentials/' + item.id}>
-                          <Image src={fotoAcesso} alt={"Acessar"} />
+                          <BiEdit size={25} />
+                          {/* <Image src={fotoAcesso} alt={"Acessar"} /> */}
                         </a>
                       </th>
                     </tr>
