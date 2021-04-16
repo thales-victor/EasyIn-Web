@@ -5,14 +5,17 @@ import Button from '../../../../components/elements/Button';
 import Select from '../../../../components/elements/Select';
 import { GetCredentialById } from '../../../../services/api/credential';
 import { GetAllPlatforms } from '../../../../services/api/platform';
+import { ChangeInputType, SetInputValueByName } from '../../../../utils/SetInputValue';
 
 // import { Container } from './styles';
 
 function CredentialsFormPage() {
   const { id } = useParams();
 
-  const [isNew] = useState(id === 0);
+  const [isNew, setIsNew] = useState(true);
+  const [showPassword, setShowPassword] = useState(true);
   const [platforms, setPlatforms] = useState([]);
+  const [platformId, setPlatformId] = useState(0);
 
   useEffect(() => {
     getCredential();
@@ -23,10 +26,13 @@ function CredentialsFormPage() {
     if (id === 0) {
       return;
     }
+    setIsNew(false);
 
     const result = await GetCredentialById(id);
     if (result) {
-
+      setPlatformId(result.platform.id);
+      SetInputValueByName('username', result.username);
+      SetInputValueByName('password', result.password);
     }
   }
 
@@ -39,8 +45,13 @@ function CredentialsFormPage() {
     }
   }
 
-  function handleSubmit(){
+  function handleSubmit() {
     alert('salvou');
+  }
+
+  function handleClickShowPassword() {
+    ChangeInputType('password', showPassword ? 'text' : 'password');
+    setShowPassword(!showPassword);
   }
 
   return (
@@ -51,11 +62,10 @@ function CredentialsFormPage() {
         <div className="form">
           <div>
             <Form onSubmit={handleSubmit}>
-              {/* disabled={!isNew} */}
               <Select name="platform">
                 {
                   platforms.map((platform) => {
-                    return <option key={platform.id}>{platform.name}</option>
+                    return <option key={platform.id} selected={platformId == platform.id}>{platform.name}</option>
                   })
                 }
               </Select>
@@ -64,10 +74,15 @@ function CredentialsFormPage() {
               <Input name="username" type="text" placeholder="Usuário ou email" />
               <br />
               <br />
-              <Input name="aa" type="text" placeholder="Senha" />
+              <Input name="password" type="password" placeholder="Senha" />
+              <br />
+              <br />
 
+              <Button type="button" onClick={handleClickShowPassword}>
+                Mostrar senha
+              </Button>
               <div className="mt-32">
-                <Button tag="a" color="dark" className="botao" wideMobile href="home">
+                <Button tag="a" color="dark" className="botao" wideMobile href="/credentials">
                   Voltar
                 </Button>
                 <Button type="submit" className="button button-primary button-wide-mobile">

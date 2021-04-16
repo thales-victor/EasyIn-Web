@@ -4,7 +4,7 @@ import User from '../../../components/layout/partials/User';
 import classNames from 'classnames';
 import { Form, Input } from '@rocketseat/unform';
 import Button from '../../../components/elements/Button';
-import SetInputValueByName from '../../../utils/SetInputValue';
+import { SetInputValueByName } from '../../../utils/SetInputValue';
 import { GetUserInfo, UpdateUser } from '../../../services/api/user';
 
 const outerClasses = classNames(

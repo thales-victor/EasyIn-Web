@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import User from '../../../components/layout/partials/User';
 import Button from '../../../components/elements/Button';
-import SetInputValueByName from '../../../utils/SetInputValue';
+import { SetInputValueByName } from '../../../utils/SetInputValue';
 import { GetAllCredentials } from '../../../services/api/credential';
 import { Form, Input } from '@rocketseat/unform';
 import "../../../assets/css/style.css"
@@ -29,8 +29,8 @@ function CredentialsPage() {
 
   async function getAllCredentials() {
 
-    //const result = await GetAllCredentials();
-    const result = [{ id: 1, username: 'ana teste', platform: 'twitter' }, { id: 2, username: 'ana teste', platform: 'twitter' }]
+    const result = await GetAllCredentials();
+    // const result = [{ id: 1, username: 'ana teste', platform: 'twitter' }, { id: 2, username: 'ana teste', platform: 'twitter' }]
     if (result) {
       setCredentials(result);
     }
