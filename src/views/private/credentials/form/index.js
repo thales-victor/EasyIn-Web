@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router';
 import { Form, Input } from '@rocketseat/unform';
 import Button from '../../../../components/elements/Button';
 import Select from '../../../../components/elements/Select';
-import { CreateCredential, DeleteCredentialById, GetCredentialById, UpdateCredential } from '../../../../services/api/credential';
+import { CreateCredential, GetCredentialById, UpdateCredential } from '../../../../services/api/credential';
 import { GetAllPlatforms } from '../../../../services/api/platform';
 import { ChangeInputType, SetInputValueByName } from '../../../../utils/SetInputValue';
 
@@ -78,12 +78,6 @@ function CredentialsFormPage() {
     setShowPassword(!showPassword);
   }
 
-  async function handleClickDelete() {
-    const result = await DeleteCredentialById(id);
-    if (result) {
-      history.push('/credentials');
-    }
-  }
 
   function handleChangePlatform (event) {
     console.log(event.target.value);
@@ -129,13 +123,6 @@ function CredentialsFormPage() {
 
               }
               <div className="mt-32">
-                {
-                  !isNew && (
-                    <Button type="button" className="botao secondary" onClick={handleClickDelete}>
-                      Excluir
-                    </Button>
-                  )
-                }
                 <Button tag="a" color="dark" className="botao" href="/credentials">
                   Voltar
                 </Button>

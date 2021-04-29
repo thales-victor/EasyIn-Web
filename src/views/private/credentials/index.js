@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import User from '../../../components/layout/partials/User';
-import Button from '../../../components/elements/Button';
-import { SetInputValueByName } from '../../../utils/SetInputValue';
 import { GetAllCredentials } from '../../../services/api/credential';
-import { Form, Input } from '@rocketseat/unform';
 import "../../../assets/css/style.css"
-import fotoAcesso from '../../../assets/images/Acesso.png';
-import MenuButton from '../../../components/menuButton';
-import Image from '../../../components/elements/Image';
-import { BiEdit, BiPlusCircle } from "react-icons/bi";
+import { BiEdit, BiPlusCircle, BiTrash } from "react-icons/bi";
+import './styles.scss';
+import { DeleteCredentialById } from '../../../services/api/credential';
+import Button from '../../../components/elements/Button';
 
 const outerClasses = classNames(
   'hero section center-content'
@@ -29,11 +25,17 @@ function CredentialsPage() {
   }, []);
 
   async function getAllCredentials() {
-
     const result = await GetAllCredentials();
-    // const result = [{ id: 1, username: 'ana teste', platform: 'twitter' }, { id: 2, username: 'ana teste', platform: 'twitter' }]
     if (result) {
       setCredentials(result);
+    }
+  }
+
+  
+  async function handleClickDelete(id) {
+    const result = await DeleteCredentialById(id); 
+    if (result) {
+      setCredentials(credentials.filter(c => c.id != id));
     }
   }
 
@@ -51,10 +53,7 @@ function CredentialsPage() {
               <tr>
                 <th>Email</th>
                 <th>Plataforma</th>
-                <th></th>
-                <th></th>
-
-
+                <th className="alignCenter">Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -68,12 +67,13 @@ function CredentialsPage() {
                       <th>
                         <label name="name">{item.platform}</label>
                       </th>
-                      <th></th>
 
-                      <th>
+                      <th className="credentialActions">
                         <a className="link" href={'/credentials/' + item.id}>
                           <BiEdit size={25} />
-                          {/* <Image src={fotoAcesso} alt={"Acessar"} /> */}
+                        </a>
+                        <a href="#" onClick={() => handleClickDelete(item.id)}>
+                          <BiTrash size={25}/>
                         </a>
                       </th>
                     </tr>
