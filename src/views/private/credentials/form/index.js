@@ -6,6 +6,7 @@ import Select from '../../../../components/elements/Select';
 import { CreateCredential, GetCredentialById, UpdateCredential } from '../../../../services/api/credential';
 import { GetAllPlatforms } from '../../../../services/api/platform';
 import { ChangeInputType, SetInputValueByName } from '../../../../utils/SetInputValue';
+import toast from '../../../../components/alert';
 
 // import { Container } from './styles';
 
@@ -35,7 +36,7 @@ function CredentialsFormPage() {
     }
   }
 
-  function setInputValues(data){
+  function setInputValues(data) {
     setPlatformId(data.platform.id);
     SetInputValueByName('username', data.username);
     SetInputValueByName('password', data.password);
@@ -61,13 +62,16 @@ function CredentialsFormPage() {
   async function create(data) {
     const result = await CreateCredential(platformId, data.username, data.password, data.confirmPassword);
     if (result) {
+      toast.success('Credencial criada');
+      setIsNew(false);
       history.push('/credentials/' + result.id);
     }
   }
 
   async function update(data) {
     const result = await UpdateCredential(id, data.username, data.password);
-    if (result){
+    if (result) {
+      toast.success('Credencial atualizada');
       setInputValues(result);
     }
   }
@@ -79,7 +83,7 @@ function CredentialsFormPage() {
   }
 
 
-  function handleChangePlatform (event) {
+  function handleChangePlatform(event) {
     console.log(event.target.value);
     setPlatformId(event.target.value)
   }
@@ -117,8 +121,8 @@ function CredentialsFormPage() {
                 )
               }
               {
-              <Button type="button" onClick={handleClickShowPassword}>
-                {showPassword ? 'Mostrar' : 'Esconder'} senha
+                <Button type="button" onClick={handleClickShowPassword}>
+                  {showPassword ? 'Mostrar' : 'Esconder'} senha
               </Button>
 
               }
@@ -127,7 +131,7 @@ function CredentialsFormPage() {
                   Voltar
                 </Button>
                 <Button type="submit" className="button button-primary">
-                  Salvar
+                  {isNew ? 'Criar' : 'Atualizar'}
                 </Button>
               </div>
             </Form>

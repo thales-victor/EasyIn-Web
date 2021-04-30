@@ -5,6 +5,7 @@ import { Form, Input } from '@rocketseat/unform';
 import Button from '../../../components/elements/Button';
 import { SetInputValueByName } from '../../../utils/SetInputValue';
 import { GetUserInfo, UpdateUser } from '../../../services/api/user';
+import toast from '../../../components/alert';
 
 const outerClasses = classNames(
   'hero section center-content'
@@ -39,6 +40,7 @@ function ProfilePage() {
 
     const result = await UpdateUser(data.name, data.email, data.oldPassword, data.newPassword, data.confirmNewPassword);
     if (result) {
+      toast.success('Perfil atualizado')
       setIsChangingPassword(false);
       setInputValues(result);
     }

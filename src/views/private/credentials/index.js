@@ -6,6 +6,7 @@ import { BiEdit, BiPlusCircle, BiTrash } from "react-icons/bi";
 import './styles.scss';
 import { DeleteCredentialById } from '../../../services/api/credential';
 import Button from '../../../components/elements/Button';
+import toast from '../../../components/alert';
 
 const outerClasses = classNames(
   'hero section center-content'
@@ -35,6 +36,7 @@ function CredentialsPage() {
   async function handleClickDelete(id) {
     const result = await DeleteCredentialById(id); 
     if (result) {
+      toast.success('Credencial removida');
       setCredentials(credentials.filter(c => c.id != id));
     }
   }
