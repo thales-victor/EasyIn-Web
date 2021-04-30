@@ -32,7 +32,8 @@ export const ApiBaseComponent = () => {
 };
 
 const onFulfilled = (response) => {
-  if (response.status === 200) {
+  if (response.status === HttpStatus.NO_CONTENT) {
+    toast.info('Não encontrado')
   }
   return response;
 };

@@ -18,14 +18,14 @@ const toast = {
       position: position
     });
   },
-  warning: (message, title = 'Cuidado') => {
+  warning: (message, title = 'Atenção') => {
     return iZtoast.warning({
       title: title,
       message: message,
       position: position
     });
   },
-  info: (message, title = 'Atenção') => {
+  info: (message, title = 'Informação') => {
     return iZtoast.info({
       title: title,
       message: message,
