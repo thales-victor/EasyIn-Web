@@ -41,6 +41,7 @@ fieldset {
 
 	&[disabled] {
 		cursor: not-allowed;
+		color: color(button-dark);
 		background-color: color-bg(input-disabled);
 		border-color: color-border(input-disabled);
 	}
@@ -60,16 +61,16 @@ fieldset {
 
 .form-input,
 .form-select {
-	display: block;
+	// display: block;
 	@include font-size(input);
 	@include font-weight(input);
 	padding: (($button-form--height - get-line-height(input) - ($button-form--border-width * 2)) / 2) ($form--padding-h - $button-form--border-width);
 	height: $button-form--height;
-	border-radius: $form--radius;
+	// border-radius: $form--radius;
     color: color(input);
 	box-shadow: none;
     max-width: 100%;
-    width: 100%;
+    width: 60%;
 }
 
 .form-input {

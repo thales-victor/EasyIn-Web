@@ -36,6 +36,9 @@ box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2);
 .botao{
     margin-right: 10px;
 }
+.botao.secondary {
+  background-color: rebeccapurple;
+}
 .titulo{
     margin-top: 40px;
     margin-right: 70%;
@@ -81,3 +84,13 @@ box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2);
       text-align: center;
       margin-top: 10px;
   }
+  .table{
+    margin-right: auto;
+    margin-left:auto;
+    width: 90%;
+    
+  }
+  .botao_table{
+    margin-right: auto;
+    margin-left: auto;
+}

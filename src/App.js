@@ -14,6 +14,7 @@ import Login from './views/Login';
 import Register from './views/Register';
 import DashboardPage from './views/private/dashboard';
 import CredentialsPage from './views/private/credentials';
+import CredentialsFormPage from './views/private/credentials/form';
 import HelpPage from './views/private/help';
 import HistoryPage from './views/private/history';
 import ProfilePage from './views/private/profile';
@@ -58,6 +59,7 @@ class App extends React.Component {
             <AppRoute exact path="/home" component={DashboardPage} layout={PrivateLayout} />
             <AppRoute exact path="/recover" component={Recover} layout={LayoutDefault} />
             <AppRoute exact path="/credentials" component={CredentialsPage} layout={PrivateLayout} />
+            <AppRoute exact path="/credentials/:id" component={CredentialsFormPage} layout={PrivateLayout} />
             <AppRoute exact path="/help" component={HelpPage} layout={PrivateLayout} />
             <AppRoute exact path="/history" component={HistoryPage} layout={PrivateLayout} />
             <AppRoute exact path="/profile" component={ProfilePage} layout={PrivateLayout} />

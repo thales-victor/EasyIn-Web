@@ -4,7 +4,7 @@ import User from '../../../components/layout/partials/User';
 import classNames from 'classnames';
 import { Form, Input } from '@rocketseat/unform';
 import Button from '../../../components/elements/Button';
-import SetInputValueByName from '../../../utils/SetInputValue';
+import { SetInputValueByName } from '../../../utils/SetInputValue';
 import { GetUserInfo, UpdateUser } from '../../../services/api/user';
 
 const outerClasses = classNames(
@@ -58,10 +58,6 @@ function ProfilePage() {
     <section className={outerClasses}>
       <div className="card" >
         <h2 className="titulo">Editar perfil</h2>
-        <div className="profileCard">
-          Foto
-        </div>
-
         <div className="form">
 
           <div>
@@ -79,13 +75,13 @@ function ProfilePage() {
                   </Button>
                 ) : (
                   <>
-                    <Input name="oldPassword" type="password" placeholder="Senha antiga" />
+                    <Input name="oldPassword" type="password" placeholder="Senha antiga" autoComplete="new-password" />
                     <br />
                     <br />
-                    <Input name="newPassword" type="password" placeholder="Nova senha" />
+                    <Input name="newPassword" type="password" placeholder="Nova senha" autoComplete="new-password" />
                     <br />
                     <br />
-                    <Input name="confirmNewPassword" type="password" placeholder="Confirmar nova senha" />
+                    <Input name="confirmNewPassword" type="password" placeholder="Confirmar nova senha" autoComplete="new-password" />
                     <br />
                     <br />
                   </>
