@@ -31,7 +31,7 @@ const LoginForm = () => {
     if (token) {
       history.push("/home");
     }
-  }, [])
+})
 
   useEffect(() => {
     if (isLoading) {
