@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { Form, Input } from '@rocketseat/unform';
 import { Register } from '../../services/api/login';
 import { useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Button from '../elements/Button';
 
 const outerClasses = classNames(

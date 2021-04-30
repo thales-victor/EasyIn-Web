@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import "../../../assets/css/style.css"
-import User from '../../../components/layout/partials/User';
 import classNames from 'classnames';
 import { Form, Input } from '@rocketseat/unform';
 import Button from '../../../components/elements/Button';
@@ -11,16 +10,12 @@ const outerClasses = classNames(
   'hero section center-content'
 );
 
-const innerClasses = classNames(
-  'hero-inner section-inner'
-);
-
 function ProfilePage() {
   const [isChangingPassword, setIsChangingPassword] = useState(false);
 
   useEffect(() => {
     getUserInfo();
-  }, []);
+  });
 
   async function getUserInfo() {
 

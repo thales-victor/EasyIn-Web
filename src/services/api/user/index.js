@@ -1,5 +1,5 @@
 import { HttpStatus } from "../../HttpStatus";
-import { get, post, put } from "../ApiBase";
+import { get, put } from "../ApiBase";
 
 export async function GetUserInfo() {
   let result = await get("api/user");

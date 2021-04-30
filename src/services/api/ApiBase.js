@@ -2,13 +2,15 @@ import React from "react";
 import axios from "axios";
 import { GetAuthentication, RemoveAuthentication } from "../localStorage/LocalStorageService";
 import { useHistory } from "react-router-dom";
+import { HttpStatus } from "../HttpStatus";
+import toast from "../../components/alert";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:5000/",
   timeout: 30000
 });
 
-var history = null;
+let history = null;
 
 export const setupInterceptors = (_history) => {
   history = _history;
@@ -36,9 +38,13 @@ const onFulfilled = (response) => {
 };
 
 const onRejected = (error) => {
-  if (error?.response?.status === 401) {
+  const status = error?.response?.status;
+
+  if (status === HttpStatus.UNAUTHORIZED) {
     RemoveAuthentication();
     history.push("/login");
+  } else{
+    toast.error(error.response.data.message)
   }
   return error.response;
 };
@@ -51,6 +57,7 @@ const requestHandler = (request) => {
     }
   }
   request.headers["Content-Type"] = "application/json";
+  request.headers["Access-Control-Allow-Origin"] = "*";
   return request;
 };
 
