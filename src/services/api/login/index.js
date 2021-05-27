@@ -10,6 +10,23 @@ export async function Login(usuario, password) {
     password: password
   };
   let result = await post("api/login", params);
+
+  if (result.status === HttpStatus.OK) {
+    SaveAuthentication(result.data);
+    return true;
+  }
+  return false;
+}
+
+export async function QrCodeLogin(platformId, browserToken) {
+  RemoveAuthentication();
+
+  var params = {
+    platformId: parseInt(platformId),
+    browserToken: browserToken
+  };
+  let result = await post("api/login/qrcode", params);
+
   if (result.status === HttpStatus.OK) {
     SaveAuthentication(result.data);
     return true;
@@ -27,7 +44,7 @@ export async function Register(name, email, password, confirmPassword) {
     confirmPassword: confirmPassword
   };
   let result = await post("api/user", params);
-  return result.status === HttpStatus.OK;
+  return result.status === HttpStatus.CREATED;
 }
 
 export async function RecoverPassword(email) {

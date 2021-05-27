@@ -6,7 +6,7 @@ import { HttpStatus } from "../HttpStatus";
 import toast from "../../components/alert";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://192.168.0.21:44347/",
   timeout: 30000
 });
 
@@ -45,7 +45,11 @@ const onRejected = (error) => {
     RemoveAuthentication();
     history.push("/login");
   } else{
-    toast.error(error.response.data.message)
+    let errorMessage = error?.response?.data?.message;
+    if (errorMessage == null){
+      errorMessage = 'Erro desconhecido'
+    }
+    toast.error(errorMessage);
   }
   return error.response;
 };
@@ -78,7 +82,7 @@ export async function post(endPoint, postObject) {
   let result = await axiosInstance.post(
     endPoint,
     postObject
-  );
+    );
   let response = {
     data: result?.data,
     status: result?.status

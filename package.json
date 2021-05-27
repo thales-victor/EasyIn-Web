@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
     "@rocketseat/unform": "^1.6.2",
     "@types/react-router-dom": "^5.1.6",
     "axios": "^0.21.0",
@@ -15,9 +17,12 @@
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
     "react-icons": "^4.2.0",
+    "react-qr-code": "^1.1.1",
+    "react-qr-reader": "^2.2.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.1",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "uuidv4": "^6.2.8"
   },
   "repository": {
     "type": "git",

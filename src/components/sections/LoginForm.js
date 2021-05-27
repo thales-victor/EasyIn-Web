@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames';
 import Button from '../elements/Button';
-import { Login } from '../../services/api/login';
+import { Login, QrCodeLogin } from '../../services/api/login';
 import { Form, Input } from '@rocketseat/unform';
 import { useHistory } from 'react-router-dom';
 import { GetAuthentication } from '../../services/localStorage/LocalStorageService';
+import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import { uuid } from 'uuidv4';
+import toast from '../alert';
 
 const outerClasses = classNames(
   'hero section center-content'
@@ -24,6 +27,11 @@ const loginStage = [
 const LoginForm = () => {
   const [loading, setLoading] = useState(loginStage[0]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showQrCodeModal, setShowQrCodeModal] = useState(false);
+  const [hideFormLogin, setHideFormLogin] = useState(false);
+  const [browserToken, setBrowserToken] = useState(uuid());
+  const [iframeSrc, setIframeSrc] = useState(uuid());
+
   const history = useHistory();
 
   useEffect(() => {
@@ -31,7 +39,22 @@ const LoginForm = () => {
     if (token) {
       history.push("/home");
     }
-})
+  }, [])
+
+  useEffect(() => {
+    setIframeSrc(`https://localhost:3000/qrcode/1/${browserToken}`)
+  }, [browserToken])
+
+  useEffect(() => {
+    if (showQrCodeModal) {
+      setTimeout(() => {
+        if (showQrCodeModal) {
+          setShowQrCodeModal(false);
+          setHideFormLogin(true);
+        }
+      }, 10000)
+    }
+  }, [showQrCodeModal])
 
   useEffect(() => {
     if (isLoading) {
@@ -46,11 +69,22 @@ const LoginForm = () => {
 
   async function HandleSubmit(data) {
     setIsLoading(true);
-    var result = await Login(data.email, data.senha);
-    setIsLoading(false);
-    if (result) {
-      history.push("/home");
+
+    if (hideFormLogin) {
+      let result = await QrCodeLogin(data.platformId, data.browserToken);
+      if (result) {
+        history.push("/home");
+      } else {
+        setHideFormLogin(false);
+      }
+    } else {
+      let result = await Login(data.email, data.senha);
+      if (result) {
+        history.push("/home");
+      }
     }
+
+    setIsLoading(false);
   }
 
   return (
@@ -66,16 +100,39 @@ const LoginForm = () => {
             <br />
             <br />
             <Form onSubmit={HandleSubmit}>
-              <Input name="email" id="email" background-image="'./../../../assets/images/User.png" type="email" placeholder="Usuário" className="" />
-              <div className="container-xs mt-32">
-              </div>
-              <Input name="senha" id="senha" type="password" placeholder="Senha" className="" />
+              {
+                !hideFormLogin ? (
+                  <>
+                    <Input name="email" id="email" background-image="'./../../../assets/images/User.png" type="email" placeholder="Usuário" className="" />
+                    <div className="container-xs mt-32">
+                    </div>
+                    <Input name="senha" id="senha" type="password" placeholder="Senha" className="" />
+                  </>
+                ) : (
+                  <>
+                    <Input name="platformId" id="platformId" value="1" hidden />
+                    <Input name="browserToken" id="platformId" value={browserToken} hidden />
+                  </>
+                )
+
+              }
               <div className="mt-32" >
                 <Button type="submit" className="button button-primary button-wide-mobile" style={{ width: 160 }} disabled={isLoading}>
                   {
                     'Login ' + loading.value
                   }
                 </Button>
+                {
+                  hideFormLogin ? (
+                    <Button tag="a" onClick={() => setHideFormLogin(false)} color="dark" style={{ width: 160, marginLeft: 50 }} disabled={isLoading}>
+                      Cancelar
+                    </Button>
+                  ) : (
+                    <Button tag="a" onClick={() => setShowQrCodeModal(true)} className="button button-primary button-wide-mobile" style={{ width: 160, marginLeft: 50 }} disabled={isLoading}>
+                      Login por QRCODE
+                    </Button>
+                  )
+                }
               </div>
             </Form>
             <br />
@@ -92,6 +149,17 @@ const LoginForm = () => {
           </div>
         </div>
       </div>
+      <Dialog
+        open={showQrCodeModal}
+        onClose={() => setShowQrCodeModal(false)}
+      >
+        <DialogTitle onClose={() => setShowQrCodeModal(false)}>
+          <h4 style={{ color: '#6163FF', textAlign: 'center' }}>Login via QRCODE</h4>
+        </DialogTitle>
+        <DialogContent style={{ width: 550, height: 550, overflow: 'hidden', }} >
+          <iframe src={iframeSrc} style={{ width: 500, height: 500, overflow: 'hidden' }} />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

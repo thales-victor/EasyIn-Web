@@ -19,6 +19,7 @@ import HelpPage from './views/private/help';
 import HistoryPage from './views/private/history';
 import ProfilePage from './views/private/profile';
 import Recover from './views/Recover'
+import QrCodePage from './views/public/QrCode';
 
 // Initialize Google Analytics
 ReactGA.initialize(process.env.REACT_APP_GA_CODE);
@@ -63,6 +64,7 @@ class App extends React.Component {
             <AppRoute exact path="/help" component={HelpPage} layout={PrivateLayout} />
             <AppRoute exact path="/history" component={HistoryPage} layout={PrivateLayout} />
             <AppRoute exact path="/profile" component={ProfilePage} layout={PrivateLayout} />
+            <AppRoute exact path="/qrcode/:platformId/:browserToken" component={QrCodePage}/>
           </Switch>
         )} />
     );

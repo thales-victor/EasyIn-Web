@@ -1,22 +1,32 @@
 import React from 'react';
 import MenuButton from '../../../components/menuButton';
-import fotoSenha from '../../../assets/images/Senha.png';
-import fotoPerfil from '../../../assets/images/Perfil.png';
-import fotoHistorico from '../../../assets/images/Historico.png';
-import fotoAjuda from '../../../assets/images/Ajuda.png';
+import CropFreeIcon from '@material-ui/icons/CropFree';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import PersonIcon from '@material-ui/icons/Person';
+import HistoryIcon from '@material-ui/icons/History';
 import './styles.scss';
 
 const DashboardPage = () => {
+  const fontSize = 'large';
+
   return (
     <>
       <div className="dashboardContainer">
         <div className="group">
-          <MenuButton image={fotoSenha} alt="Credentials" href="credentials" margin />
-          <MenuButton image={fotoPerfil} alt="Profile" href="profile" />
+          <MenuButton alt="Credentials" href="credentials" margin>
+            <VpnKeyIcon fontSize={fontSize}/>
+          </MenuButton>
+          <MenuButton alt="Profile" href="profile" >
+            <PersonIcon fontSize={fontSize} />
+          </MenuButton>
         </div>
         <div className="group">
-          <MenuButton image={fotoHistorico} alt="History" href="history" margin />
-          <MenuButton image={fotoAjuda} alt="Help" href="help" />
+          <MenuButton alt="History" href="history" margin >
+            <HistoryIcon fontSize={fontSize} />
+          </MenuButton>
+          <MenuButton alt="Help" href="help" >
+            <CropFreeIcon fontSize={fontSize} />
+          </MenuButton>
         </div>
       </div>
     </>

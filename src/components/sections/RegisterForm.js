@@ -4,6 +4,7 @@ import { Form, Input } from '@rocketseat/unform';
 import { Register } from '../../services/api/login';
 import { useHistory } from 'react-router-dom';
 import Button from '../elements/Button';
+import toast from '../alert';
 
 const outerClasses = classNames(
   'hero section center-content'
@@ -20,7 +21,8 @@ const LoginForm = () => {
   async function HandleSubmit(data) {
     var result = await Register(data.name, data.email, data.senha, data.confirmarSenha);
     if (result) {
-      history.push("/login");
+      toast.success('Cadastro realizado com sucesso!')
+      history.push("login");
     }
   }
 

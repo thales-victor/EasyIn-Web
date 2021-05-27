@@ -3,16 +3,13 @@ import Image from '../elements/Image';
 
 import './styles.scss';
 
-function MenuButton({ image, alt, href, margin }) {
+function MenuButton({ image, alt, href, margin, children }) {
   return (
     <div className={`MenuButtonContainer ${margin && "margin"}`}>
       <a className="link" href={href}>
-        <Image
-          src={image}
-          alt={alt}
-          width={50}
-          height={50}
-        />
+        {
+          children
+        }
       </a>
     </div>
   );

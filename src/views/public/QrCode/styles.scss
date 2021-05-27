@@ -1,0 +1,12 @@
+.qrCodeContainer {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  .qrCodeBorder {
+    background-color: white;
+    padding: 50px;
+  }
+}
