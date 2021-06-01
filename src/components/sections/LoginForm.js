@@ -30,7 +30,7 @@ const LoginForm = () => {
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
   const [hideFormLogin, setHideFormLogin] = useState(false);
   const [browserToken, setBrowserToken] = useState(uuid());
-  const [iframeSrc, setIframeSrc] = useState(uuid());
+  const [iframeSrc, setIframeSrc] = useState('');
 
   const history = useHistory();
 
