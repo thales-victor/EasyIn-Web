@@ -84,7 +84,6 @@ function CredentialsFormPage() {
 
 
   function handleChangePlatform(event) {
-    console.log(event.target.value);
     setPlatformId(event.target.value)
   }
 
