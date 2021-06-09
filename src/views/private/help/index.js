@@ -3,6 +3,7 @@ import QrReader from 'react-qr-reader';
 import { CreateQrCodeLogin } from '../../../services/api/qrCode';
 import { useHistory } from 'react-router-dom';
 import toast from '../../../components/alert';
+import Button from '../../../components/elements/Button';
 
 function HelpPage() {
   const [isReady, setIsReady] = useState(true);
@@ -62,6 +63,16 @@ function HelpPage() {
           <div className="card" >
             <h2 className="titulo">Escolha uma opção</h2>
             <div className="content">
+            {/* <Select name="platform" value={platformId} onChange={handleChangePlatform} disabled={!isNew}>
+                {
+                  credentialOptions.map((item) => {
+                    return <option key={item.id} value={item.id}>{item.username}</option>
+                  })
+                }
+              </Select>
+              <Button>
+                Escolher
+              </Button> */}
               <table className="table">
                 <thead>
                   <tr>
