@@ -24,7 +24,7 @@ function Toolbar() {
   }
   return (
     <header className="toolbar">
-      <Logo width="150" height="75" link="home" />
+      <Logo width="150" height="75" link="/home" />
       <div className="user">
         <span>{user}</span>
         <BiLogOut size={40} alt="Logout" onClick={handleClickLogout} />
