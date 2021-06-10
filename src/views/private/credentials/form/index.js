@@ -7,6 +7,8 @@ import { CreateCredential, GetCredentialById, UpdateCredential } from '../../../
 import { GetAllPlatforms } from '../../../../services/api/platform';
 import { ChangeInputType, SetInputValueByName } from '../../../../utils/SetInputValue';
 import toast from '../../../../components/alert';
+import { Grid } from '@material-ui/core';
+import RandomPasswordDialog from './randomPasswordDialog';
 
 // import { Container } from './styles';
 
@@ -18,6 +20,7 @@ function CredentialsFormPage() {
   const [showPassword, setShowPassword] = useState(true);
   const [platforms, setPlatforms] = useState([]);
   const [platformId, setPlatformId] = useState(0);
+  const [openRandomPasswordDialog, setOpenRandomPasswordDialog] = useState(false);
 
   useEffect(() => {
     getCredential();
@@ -87,6 +90,19 @@ function CredentialsFormPage() {
     setPlatformId(event.target.value)
   }
 
+  function handleOpenRandomPasswordDialog(){
+    setOpenRandomPasswordDialog(true);
+  }
+
+  function handleCloseRandomPasswordDialog(){
+    setOpenRandomPasswordDialog(false);
+  }
+
+
+  function setRandomPassword(data) {
+    SetInputValueByName('password', data);
+  }
+
   return (
 
     <section>
@@ -119,12 +135,19 @@ function CredentialsFormPage() {
                   </>
                 )
               }
-              {
-                <Button type="button" onClick={handleClickShowPassword}>
-                  {showPassword ? 'Mostrar' : 'Esconder'} senha
-              </Button>
+              <Grid container xs={12} spacing={1}>
+                <Grid item xs={12} sm={6}>
+                  <Button type="button" onClick={handleOpenRandomPasswordDialog}>
+                    Gerar senha aleatória
+                  </Button>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Button type="button" onClick={handleClickShowPassword}>
+                      {showPassword ? 'Mostrar' : 'Esconder'} senha
+                  </Button>
+                </Grid>
+              </Grid>
 
-              }
               <div className="mt-32">
                 <Button tag="a" color="dark" className="botao" href="/credentials">
                   Voltar
@@ -137,6 +160,7 @@ function CredentialsFormPage() {
           </div>
         </div>
       </div>
+      <RandomPasswordDialog open={openRandomPasswordDialog} handleClose={handleCloseRandomPasswordDialog} setPassword={setRandomPassword} />
     </section>
   );
 }
