@@ -9,18 +9,25 @@ import { ChangeInputType, SetInputValueByName } from '../../../../utils/SetInput
 import toast from '../../../../components/alert';
 import { Grid } from '@material-ui/core';
 import RandomPasswordDialog from './randomPasswordDialog';
+import { Autocomplete, createFilterOptions } from '@material-ui/lab';
+import { TextField } from '@material-ui/core';
 
-// import { Container } from './styles';
+import './styles.scss';
 
 function CredentialsFormPage() {
   const history = useHistory();
+  const filter = createFilterOptions();
   const { id } = useParams();
+
+  const createMsg = "Criar ";
+  const newPlatformId = 999;
 
   const [isNew, setIsNew] = useState(true);
   const [showPassword, setShowPassword] = useState(true);
   const [platforms, setPlatforms] = useState([]);
-  const [platformId, setPlatformId] = useState(0);
+  const [platformId, setPlatformId] = useState();
   const [openRandomPasswordDialog, setOpenRandomPasswordDialog] = useState(false);
+
 
   useEffect(() => {
     getCredential();
@@ -46,11 +53,9 @@ function CredentialsFormPage() {
   }
 
   async function getPlatforms() {
-
-    const choosePlatform = { id: 0, name: "Escolha a plataforma" }
     const result = await GetAllPlatforms();
     if (result) {
-      setPlatforms([choosePlatform, ...result]);
+      setPlatforms(result);
     }
   }
 
@@ -86,15 +91,39 @@ function CredentialsFormPage() {
   }
 
 
-  function handleChangePlatform(event) {
-    setPlatformId(event.target.value)
+  function handleChangePlatform(event, value) {
+    if (value.name.includes(createMsg)) {
+      const newPlatform = {
+        id: newPlatformId,
+        name: value.id
+      }
+      setPlatforms([...platforms, newPlatform]);
+      setTimeout(() => {
+        setPlatformId(newPlatform.id);
+      }, 1000);
+    } else {
+      setPlatformId(value.id);
+    }
   }
 
-  function handleOpenRandomPasswordDialog(){
+  function handleFilterOptions(options, params) {
+    console.log([options, params]);
+    const filtered = filter(options, params);
+    if (params.inputValue !== '') {
+      filtered.push({
+        id: params.inputValue,
+        name: `${createMsg} '${params.inputValue}'`,
+      });
+    }
+
+    return filtered;
+  }
+
+  function handleOpenRandomPasswordDialog() {
     setOpenRandomPasswordDialog(true);
   }
 
-  function handleCloseRandomPasswordDialog(){
+  function handleCloseRandomPasswordDialog() {
     setOpenRandomPasswordDialog(false);
   }
 
@@ -111,6 +140,20 @@ function CredentialsFormPage() {
         <div className="form">
           <div>
             <Form onSubmit={handleSubmit}>
+              <Autocomplete
+                selectOnFocus
+                clearOnBlur
+                handleHomeEndKeys
+                className="platforms"
+                value={platformId}
+                onChange={handleChangePlatform}
+                filterOptions={handleFilterOptions}
+                options={platforms.sort((a, b) => a.allowIntegratedLogin === b.allowIntegratedLogin ? 0 : a.allowIntegratedLogin ? -1 : 1)}
+                groupBy={(option) => option.allowIntegratedLogin ? 'Login automatizado' : 'Sem login automatizado'}
+                getOptionLabel={(option) => option.name}
+                style={{ width: 300 }}
+                renderInput={(params) => <TextField {...params} fullWidth label="Plataformas" variant="outlined" disabled={!isNew} />}
+              />
               <Select name="platform" value={platformId} onChange={handleChangePlatform} disabled={!isNew}>
                 {
                   platforms.map((platform) => {
@@ -143,7 +186,7 @@ function CredentialsFormPage() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <Button type="button" onClick={handleClickShowPassword}>
-                      {showPassword ? 'Mostrar' : 'Esconder'} senha
+                    {showPassword ? 'Mostrar' : 'Esconder'} senha
                   </Button>
                 </Grid>
               </Grid>
