@@ -6,7 +6,7 @@ import { HttpStatus } from "../HttpStatus";
 import toast from "../../components/alert";
 
 const axiosInstance = axios.create({
-  baseURL: "https://192.168.0.21:44347/",
+  baseURL: "http://192.168.0.21/EasyIn-Back/",
   timeout: 30000
 });
 

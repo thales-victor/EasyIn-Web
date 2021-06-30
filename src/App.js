@@ -3,6 +3,7 @@ import { withRouter, Switch } from 'react-router-dom';
 import AppRoute from './utils/AppRoute';
 import ScrollReveal from './utils/ScrollReveal';
 import ReactGA from 'react-ga';
+import { ApiBaseComponent } from './services/api/ApiBase';
 
 // Layouts
 import LayoutDefault from './layouts/LayoutDefault';
@@ -53,19 +54,22 @@ class App extends React.Component {
       <ScrollReveal
         ref="scrollReveal"
         children={() => (
-          <Switch>
-            <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
-            <AppRoute exact path="/login" component={Login} layout={LayoutDefault} />
-            <AppRoute exact path="/register" component={Register} layout={LayoutDefault} />
-            <AppRoute exact path="/home" component={DashboardPage} layout={PrivateLayout} />
-            <AppRoute exact path="/recover" component={Recover} layout={LayoutDefault} />
-            <AppRoute exact path="/credentials" component={CredentialsPage} layout={PrivateLayout} />
-            <AppRoute exact path="/credentials/:id" component={CredentialsFormPage} layout={PrivateLayout} />
-            <AppRoute exact path="/help" component={HelpPage} layout={PrivateLayout} />
-            <AppRoute exact path="/history" component={HistoryPage} layout={PrivateLayout} />
-            <AppRoute exact path="/profile" component={ProfilePage} layout={PrivateLayout} />
-            <AppRoute exact path="/qrcode/:platformId/:browserToken" component={QrCodePage}/>
-          </Switch>
+          <>
+            <ApiBaseComponent />
+            <Switch>
+              <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
+              <AppRoute exact path="/login" component={Login} layout={LayoutDefault} />
+              <AppRoute exact path="/register" component={Register} layout={LayoutDefault} />
+              <AppRoute exact path="/home" component={DashboardPage} layout={PrivateLayout} />
+              <AppRoute exact path="/recover" component={Recover} layout={LayoutDefault} />
+              <AppRoute exact path="/credentials" component={CredentialsPage} layout={PrivateLayout} />
+              <AppRoute exact path="/credentials/:id" component={CredentialsFormPage} layout={PrivateLayout} />
+              <AppRoute exact path="/help" component={HelpPage} layout={PrivateLayout} />
+              <AppRoute exact path="/history" component={HistoryPage} layout={PrivateLayout} />
+              <AppRoute exact path="/profile" component={ProfilePage} layout={PrivateLayout} />
+              <AppRoute exact path="/qrcode/:platformId/:browserToken" component={QrCodePage} />
+            </Switch>
+          </>
         )} />
     );
   }
