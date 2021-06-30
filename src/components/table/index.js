@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function DenseTable({children}) {
+export default function DefaultTable({children}) {
   const classes = useStyles();
 
   return (
