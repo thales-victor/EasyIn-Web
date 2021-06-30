@@ -153,7 +153,7 @@ function CredentialsFormPage() {
                   Voltar
                 </Button>
                 <Button type="submit" className="button button-primary">
-                  {isNew ? 'Criar' : 'Atualizar'}
+                  {isNew ? 'Criar' : 'Salvar'}
                 </Button>
               </div>
             </Form>

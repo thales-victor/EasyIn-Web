@@ -66,7 +66,7 @@ function RandomPasswordDialog({ open, handleClose, setPassword }) {
       <DialogTitle className="title">Gerar senha aleatória</DialogTitle>
       <DialogContent dividers>
         <Typography variant="body2" color="secondary">
-          <strong>ATENÇÃO:</strong> Gerar uma senha aleatória não altera a senha na plataforma desejada, apenas auxilia na criação de uma nova senha segura.
+          <strong>ATENÇÃO:</strong> Gerar uma senha aleatória não altera a senha da plataforma desejada. Para isso, é necessário entrar na plataforma e alterar manualmente.
         </Typography>
         <Grid container spacing={1}>
           <Grid item xs={12} className="mg-t-30">

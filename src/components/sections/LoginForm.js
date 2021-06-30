@@ -42,7 +42,7 @@ const LoginForm = () => {
   }, [])
 
   useEffect(() => {
-    setIframeSrc(`https://localhost:3000/qrcode/1/${browserToken}`)
+    setIframeSrc(`http://localhost:3000/qrcode/1/${browserToken}`)
   }, [browserToken])
 
   useEffect(() => {
