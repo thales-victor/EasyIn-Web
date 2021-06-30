@@ -1,17 +1,10 @@
 .dashboardContainer {
   
-
+  margin-top: 150px;
   .group {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .card {
-    
-    /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 0 #3498db;
-    transition: 0.3s;
-    text-align: right;
-    
-  }
+
 }

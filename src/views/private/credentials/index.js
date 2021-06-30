@@ -7,14 +7,11 @@ import './styles.scss';
 import { DeleteCredentialById } from '../../../services/api/credential';
 import Button from '../../../components/elements/Button';
 import toast from '../../../components/alert';
+import SimpleCard from '../../../components/card';
+import DefaultTable from '../../../components/table';
+import Container from '../../../components/layout/container';
 
-const outerClasses = classNames(
-  'hero section center-content'
-);
 
-const innerClasses = classNames(
-  'hero-inner section-inner'
-);
 
 
 function CredentialsPage() {
@@ -42,15 +39,14 @@ function CredentialsPage() {
   }
 
   return (
-    <section className={outerClasses}>
-      <div className="card" >
-        <h2 className="titulo">Senhas</h2>
+   
+      <Container>
+      <SimpleCard title="Senhas" >
+        
         <a className="link" href={'/credentials/0'} style={{ position: 'absolute', top: '175px', right: '320px' }}>
           <BiPlusCircle size={40} />
         </a>
-
-        <div className="content">
-          <table className="table">
+          <DefaultTable>
             <thead>
               <tr>
                 <th>Email</th>
@@ -84,11 +80,10 @@ function CredentialsPage() {
               }
 
             </tbody>
-          </table>
-
-        </div>
-      </div>
-    </section>
+          </DefaultTable>
+      </SimpleCard>
+      </Container>
+  
 
   );
 }

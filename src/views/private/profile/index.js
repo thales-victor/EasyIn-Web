@@ -6,10 +6,11 @@ import Button from '../../../components/elements/Button';
 import { SetInputValueByName } from '../../../utils/SetInputValue';
 import { GetUserInfo, UpdateUser } from '../../../services/api/user';
 import toast from '../../../components/alert';
+import SimpleCard from '../../../components/card';
+import Container from '../../../components/layout/container';
+import TextFields from '../../../components/textField';
 
-const outerClasses = classNames(
-  'hero section center-content'
-);
+
 
 function ProfilePage() {
   const [isChangingPassword, setIsChangingPassword] = useState(false);
@@ -52,17 +53,15 @@ function ProfilePage() {
 
   return (
 
-    <section className={outerClasses}>
-      <div className="card" >
-        <h2 className="titulo">Editar perfil</h2>
-        <div className="form">
-
-          <div>
+    <Container>
+      <SimpleCard title="Editar perfil">
+        <br></br>
+      
             <Form onSubmit={handleSubmit}>
-              <Input name="name" type="text" placeholder="Nome" />
+              <TextFields name="name" type="text" label="Nome"/>
               <br />
               <br />
-              <Input name="email" type="email" placeholder="E-mail" />
+              <TextFields name="email" type="email" label="E-mail" />
               <br />
               <br />
               {
@@ -72,13 +71,13 @@ function ProfilePage() {
                   </Button>
                 ) : (
                   <>
-                    <Input name="oldPassword" type="password" placeholder="Senha antiga" autoComplete="new-password" />
+                    <TextFields name="oldPassword" type="password" label="Senha antiga" autoComplete="new-password" />
                     <br />
                     <br />
-                    <Input name="newPassword" type="password" placeholder="Nova senha" autoComplete="new-password" />
+                    <TextFields name="newPassword" type="password" label="Nova senha" autoComplete="new-password" />
                     <br />
                     <br />
-                    <Input name="confirmNewPassword" type="password" placeholder="Confirmar nova senha" autoComplete="new-password" />
+                    <TextFields name="confirmNewPassword" type="password" label="Confirmar nova senha" autoComplete="new-password" />
                     <br />
                     <br />
                   </>
@@ -94,10 +93,9 @@ function ProfilePage() {
                 </Button>
               </div>
             </Form>
-          </div>
-        </div>
-      </div>
-    </section>
+      
+      </SimpleCard>
+      </Container>
   );
 }
 

@@ -4,6 +4,7 @@ import CropFreeIcon from '@material-ui/icons/CropFree';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import PersonIcon from '@material-ui/icons/Person';
 import HistoryIcon from '@material-ui/icons/History';
+
 import './styles.scss';
 
 const DashboardPage = () => {

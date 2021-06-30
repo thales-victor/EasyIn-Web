@@ -10,7 +10,7 @@ function PrivateLayout({ children }) {
   useEffect(() => {
     const token = GetAuthentication();
     if (!token) {
-      history.push("/login");
+      //  history.push("/login");
     }
   })
 

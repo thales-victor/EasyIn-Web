@@ -39,9 +39,11 @@ function HistoryPage() {
   }
 
   return (
+    
     <Container>
+      
       <SimpleCard title="Histórico de logins">
-        <RefreshIcon onClick={getLoginHistory} />
+      <RefreshIcon onClick={getLoginHistory} />
         <DefaultTable>
           <thead>
             <tr>
@@ -49,6 +51,7 @@ function HistoryPage() {
               <th>Usuário/Email</th>
               <th>Data/Hora</th>
               <th>Realizou login</th>
+
             </tr>
           </thead>
           <tbody>

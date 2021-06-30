@@ -7,8 +7,12 @@ import { CreateCredential, GetCredentialById, UpdateCredential } from '../../../
 import { GetAllPlatforms } from '../../../../services/api/platform';
 import { ChangeInputType, SetInputValueByName } from '../../../../utils/SetInputValue';
 import toast from '../../../../components/alert';
-import { Grid } from '@material-ui/core';
+import { Grid, MenuItem } from '@material-ui/core';
 import RandomPasswordDialog from './randomPasswordDialog';
+import SimpleCard from '../../../../components/card';
+import Container from '../../../../components/layout/container';
+import TextFields from '../../../../components/textField';
+import TextSelect from '../../../../components/textSelect';
 
 // import { Container } from './styles';
 
@@ -105,31 +109,29 @@ function CredentialsFormPage() {
 
   return (
 
-    <section>
-      <div className="card" >
-        <h2 className="titulo">{isNew ? 'Criar' : 'Editar'} senha</h2>
-        <div className="form">
-          <div>
+    <Container>
+      <SimpleCard title="Criar/Editar senha" >
+        <br></br>
             <Form onSubmit={handleSubmit}>
-              <Select name="platform" value={platformId} onChange={handleChangePlatform} disabled={!isNew}>
+              <TextSelect label="platform" value={platformId} onChange={handleChangePlatform} disabled={!isNew}>
                 {
                   platforms.map((platform) => {
-                    return <option key={platform.id} value={platform.id}>{platform.name}</option>
+                    return <MenuItem key={platform.id} value={platform.id}>{platform.label}</MenuItem>
                   })
                 }
-              </Select>
+              </TextSelect  >
               <br />
               <br />
-              <Input name="username" type="text" placeholder="Usuário ou email" autoComplete="email" />
+              <TextFields name="username" type="text" label="Usuário ou email" autoComplete="email" />
               <br />
               <br />
-              <Input name="password" type="password" placeholder="Senha" autoComplete="new-password" />
+              <TextFields name="password" type="password" label="Senha" autoComplete="new-password" />
               <br />
               <br />
               {
                 isNew && (
                   <>
-                    <Input name="confirmPassword" type="password" placeholder="Confirmar senha" />
+                    <TextFields name="confirmPassword" type="password" label="Confirmar senha" />
                     <br />
                     <br />
                   </>
@@ -157,11 +159,9 @@ function CredentialsFormPage() {
                 </Button>
               </div>
             </Form>
-          </div>
-        </div>
-      </div>
+      </SimpleCard>
       <RandomPasswordDialog open={openRandomPasswordDialog} handleClose={handleCloseRandomPasswordDialog} setPassword={setRandomPassword} />
-    </section>
+      </Container>
   );
 }
 
