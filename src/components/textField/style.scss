@@ -1,7 +1,19 @@
 .cor{
-    width: 50%;
-    border: white!important;
-    margin-left: 50%;
+  width: 50%;
+  border: white!important;
+  margin-left: 50%;
+
+  .text{
+    color: white;
+  }
+
+  .input-root {
+    color: white;
     
-    position: relative;
+    fieldset,
+    &:hover > fieldset,
+    &:focus > fieldset {
+      border-color: white;
+    }
+  }
 }
