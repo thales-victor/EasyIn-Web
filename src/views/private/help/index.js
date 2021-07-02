@@ -3,6 +3,9 @@ import QrReader from 'react-qr-reader';
 import { CreateQrCodeLogin } from '../../../services/api/qrCode';
 import { useHistory } from 'react-router-dom';
 import toast from '../../../components/alert';
+import SimpleAccordion from '../../../components/accordion';
+import Container from '../../../components/layout/container';
+import SimpleCard from '../../../components/card';
 
 function HelpPage() {
   const [isReady, setIsReady] = useState(true);
@@ -47,49 +50,20 @@ function HelpPage() {
   }
 
   return (
-    isReady && (
-      !showCredentialOptions ? (
-        <div style={{ marginTop: 150 }}>
-          <QrReader
-            delay={300}
-            onError={handleError}
-            onScan={handleScan}
-            style={{ width: '100%' }}
-          />
-        </div>
-      ) : (
-        <section>
-          <div className="card" >
-            <h2 className="titulo">Escolha uma opção</h2>
-            <div className="content">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Usuário/Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    credentialOptions.map(item => {
-                      return (
-                        <tr onClick={() => handleSelectCredentialOption(item.id)} key={item.id}>
-                          <th>
-                            <label name="name">{item.username}</label>
-                          </th>
-                        </tr>
-                      )
-                    })
-                  }
 
-                </tbody>
-              </table>
-
-            </div>
-          </div>
-        </section>
+    <Container>
+          <SimpleCard title="FAQ">
+            
+            <SimpleAccordion title="É possível armazenar todas as minhas senhas no EasyIn?">Sim, basta cadastrá-las no seu perfil.</SimpleAccordion>
+            <SimpleAccordion title="Para cadastrar uma senha de rede social, ela tem que ter integração com a EasyIn?">Não, é possível cadastrar todas as senhas mesmo que somente para consulta.</SimpleAccordion>
+            <SimpleAccordion title="É seguro guardar minhas senhas no EasyIn?">Sem dúvidas! Todas as senhas são criptografadas no momento do armazenamento no banco. </SimpleAccordion>
+            <SimpleAccordion title="Como gerar senhas aleatórias?">No menu de editar senhas, clique no botão "Gerar senha".</SimpleAccordion>
+            <SimpleAccordion title="Como utilizar o EasyIn para fazer login?">No momento do login, basta acessar o app EasyIn pelo seu aparelho celular e apontar a camera para o QR Code na tela</SimpleAccordion>
+            
+            </SimpleCard>
+        </Container>
       )
-    )
-  );
+
 }
 
 export default HelpPage;

@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuButton from '../../../components/menuButton';
-import CropFreeIcon from '@material-ui/icons/CropFree';
+import HelpIcon from '@material-ui/icons/HelpOutline';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import PersonIcon from '@material-ui/icons/Person';
 import HistoryIcon from '@material-ui/icons/History';
@@ -26,7 +26,7 @@ const DashboardPage = () => {
             <HistoryIcon fontSize={fontSize} />
           </MenuButton>
           <MenuButton alt="Help" href="help" >
-            <CropFreeIcon fontSize={fontSize} />
+            <HelpIcon fontSize={fontSize} />
           </MenuButton>
         </div>
       </div>

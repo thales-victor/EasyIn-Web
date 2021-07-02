@@ -1,0 +1,49 @@
+    
+    .accordion{
+        background-color: #151719 !important;
+        color:#ECEDED!important;
+    }
+
+    .card {
+        background-color: #151719 !important;
+        box-shadow: 0 4px 8px 0 #3498db !important;
+        background-color: #151719;
+        margin-top: 150px;
+        margin-bottom: 100px;
+        /* Add shadows to create the "card" effect */
+       
+        transition: 0.3s;
+        padding-bottom: 25px;
+        width: 70%;
+        margin-left: 15%;
+        text-align: right;
+        padding: 2px 16px;
+        text-align: center;
+        margin-top: 10px;
+        color:#ECEDED!important;
+        &:hover{
+            box-shadow: 0 8px 16px 0  rgba(255, 255, 255, 0.2)!important;
+        }
+        .title{
+            margin-top: 40px;
+            margin-right: 70%;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            padding-top: 15px;
+            color:#ECEDED;
+            font-family: "Inter", sans-serif;
+            font-weight: 600;
+            font-size: 3rem;
+        }
+        @media (max-width: 600px){
+            .title{
+                font-size:1.75rem;
+            }
+        }
+      
+        
+      
+}
+
+  
