@@ -15,6 +15,18 @@ import './style.scss'
           value={plataform}
           onChange={handleChange}
           variant="outlined"
+          InputLabelProps={{
+            classes: {
+              root: "text"
+            }
+          }}
+          InputProps={{
+            className: "input-root",
+            classes: {
+              input: "input",
+              notchedOutline: "teste"
+            }
+          }}
         ></TextField>
         
 

@@ -2,6 +2,18 @@
     width: 50%;
     border: white!important;
     margin-left: 50%;
-    
-    position: relative;
-}
+  
+    .text{
+      color: white;
+    }
+  
+    .input-root {
+      color: white;
+      
+      fieldset,
+      &:hover > fieldset,
+      &:focus > fieldset {
+        border-color: white;
+      }
+    }
+  }
