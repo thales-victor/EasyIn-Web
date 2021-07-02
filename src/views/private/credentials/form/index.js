@@ -26,6 +26,10 @@ function CredentialsFormPage() {
   const [platformId, setPlatformId] = useState(0);
   const [openRandomPasswordDialog, setOpenRandomPasswordDialog] = useState(false);
 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
   useEffect(() => {
     getCredential();
     getPlatforms();
@@ -45,8 +49,8 @@ function CredentialsFormPage() {
 
   function setInputValues(data) {
     setPlatformId(data.platform.id);
-    SetInputValueByName('username', data.username);
-    SetInputValueByName('password', data.password);
+    setUsername(data.username);
+    setPassword(data.password);
   }
 
   async function getPlatforms() {
@@ -66,8 +70,8 @@ function CredentialsFormPage() {
     }
   }
 
-  async function create(data) {
-    const result = await CreateCredential(platformId, data.username, data.password, data.confirmPassword);
+  async function create() {
+    const result = await CreateCredential(platformId, username, password, confirmPassword);
     if (result) {
       toast.success('Credencial criada');
       setIsNew(false);
@@ -75,8 +79,8 @@ function CredentialsFormPage() {
     }
   }
 
-  async function update(data) {
-    const result = await UpdateCredential(id, data.username, data.password);
+  async function update() {
+    const result = await UpdateCredential(id, username, password);
     if (result) {
       toast.success('Credencial atualizada');
       setInputValues(result);
@@ -91,6 +95,7 @@ function CredentialsFormPage() {
 
 
   function handleChangePlatform(event) {
+    console.log(event.target.value)
     setPlatformId(event.target.value)
   }
 
@@ -113,25 +118,25 @@ function CredentialsFormPage() {
       <SimpleCard title="Criar/Editar senha" >
         <br></br>
             <Form onSubmit={handleSubmit}>
-              <TextSelect label="platform" value={platformId} onChange={handleChangePlatform} disabled={!isNew}>
+              <TextSelect label="Plataforma" value={platformId} onChange={handleChangePlatform} disabled={!isNew}>
                 {
                   platforms.map((platform) => {
-                    return <MenuItem key={platform.id} value={platform.id}>{platform.label}</MenuItem>
+                    return <MenuItem key={platform.id} value={platform.id}>{platform.name}</MenuItem>
                   })
                 }
               </TextSelect  >
               <br />
               <br />
-              <TextFields name="username" type="text" label="Usuário ou email" autoComplete="email" />
+              <TextFields name="username" type="text" value={username} setValue={setUsername} label="Usuário ou email" autoComplete="email" />
               <br />
               <br />
-              <TextFields name="password" type="password" label="Senha" autoComplete="new-password" />
+              <TextFields name="password" type="password" value={password} setValue={setPassword} label="Senha" autoComplete="new-password" />
               <br />
               <br />
               {
                 isNew && (
                   <>
-                    <TextFields name="confirmPassword" type="password" label="Confirmar senha" />
+                    <TextFields name="confirmPassword" value={confirmPassword} setValue={setConfirmPassword} type="password" label="Confirmar senha" />
                     <br />
                     <br />
                   </>
@@ -151,10 +156,10 @@ function CredentialsFormPage() {
               </Grid>
 
               <div className="mt-32">
-                <Button tag="a" color="dark" className="botao" href="/credentials">
+                <Button tag="a" color="dark" className="botao wdt-200" href="/credentials">
                   Voltar
                 </Button>
-                <Button type="submit" className="button button-primary">
+                <Button type="submit" className="button wdt-200 button-primary">
                   {isNew ? 'Criar' : 'Salvar'}
                 </Button>
               </div>

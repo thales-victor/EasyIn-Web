@@ -36,6 +36,9 @@ box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2);
 .botao{
     margin-right: 10px;
 }
+.wdt-200{
+  width: 200px;
+}
 .botao.secondary {
   background-color: rebeccapurple;
 }

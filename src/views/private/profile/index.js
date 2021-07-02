@@ -85,10 +85,10 @@ function ProfilePage() {
               }
 
               <div className="mt-32">
-                <Button tag="a" color="dark" className="botao" wideMobile href="home">
+                <Button tag="a" color="dark" className="botao wdt-200" wideMobile href="home">
                   Voltar
                 </Button>
-                <Button type="submit" className="button button-primary button-wide-mobile">
+                <Button type="submit" className="button wdt-200 button-primary button-wide-mobile">
                   Salvar
                 </Button>
               </div>

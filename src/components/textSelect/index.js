@@ -3,7 +3,11 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import './style.scss'
   
-  export default function TextSelect( {plataform, label,handleChange}) {
+  export default function TextSelect( {plataform, label,onChange, children}) {
+
+    function handleChange(event){
+      onchange(event.target.value);
+    }
 
     return (
 
@@ -13,7 +17,7 @@ import './style.scss'
           select
           label={label}
           value={plataform}
-          onChange={handleChange}
+          onChange={onChange}
           variant="outlined"
           InputLabelProps={{
             classes: {
@@ -27,7 +31,9 @@ import './style.scss'
               notchedOutline: "teste"
             }
           }}
-        ></TextField>
+        >
+          {children}
+        </TextField>
         
 
    
